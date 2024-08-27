@@ -38,7 +38,7 @@ export default function App() {
 function Card() {
   const [randomId, setRandomId] = useState("CLICK MEEH!!");
   const [advice, setAdvice] = useState(
-    "Welcom Fellas!!!  😒 i dun hab any advoic now . But  yo  caan click billlu on the purple shit  💩 cawlled button 😕 to generate som advice 💭 for yaa..!! hab  a noice day yoo 😈"
+    "Welcom Fellas!!!  😒 i dun hab any advoic now . But  yo  caan click on the purple shit  💩 cawlled button 😕 to generate som advice 💭 for yaa..!! hab  a noice day yoo 😈"
   );
   async function getAdvice() {
     const res = await fetch("https://api.adviceslip.com/advice");
@@ -89,5 +89,5 @@ function Image({ randomId }) {
 }
 
 function Quotes({ advice }) {
-  return <p>{advice + advice}</p>;
+  return <p>{advice}</p>;
 }
