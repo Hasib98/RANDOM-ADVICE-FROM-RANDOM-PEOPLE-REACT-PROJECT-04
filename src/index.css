@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply bg-gradient-to-r from-violet-500 to-fuchsia-500 flex justify-center m-10
+}
+
+.card {
+    @apply h-auto w-96 flex flex-col justify-center items-center bg-purple-300 rounded-2xl bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-20 p-9
+}
+
+.image {
+    @apply h-80 w-80 rounded-full border-8 border-purple-300 opacity-75 mb-4
+}
+
+button {
+    @apply text-white text-2xl font-medium tracking-widest bg-fuchsia-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-3xl p-2 m-2 shadow-fuchsia-600 shadow-lg
+}
+
+p {
+    @apply bg-emerald-300 m-4 p-3 border rounded-3xl bg-opacity-50 shadow-emerald-500 shadow-lg text-yellow-800 text-center
+}
+
+/* https://www.realtimecolors.com/?colors=0d0717-f4f1fb-6539c8-de8b89-d7b56e&fonts=Inter-Inter */
