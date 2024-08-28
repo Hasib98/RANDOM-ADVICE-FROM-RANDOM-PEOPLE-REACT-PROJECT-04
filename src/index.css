@@ -6,8 +6,24 @@ body {
     @apply bg-gradient-to-r from-violet-500 to-fuchsia-500 flex justify-center m-10
 }
 
+.app {
+    @apply flex space-x-5
+}
+
 .card {
-    @apply h-auto w-96 flex flex-col justify-center items-center bg-purple-300 rounded-2xl bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-20 p-9
+    @apply h-full w-auto flex flex-col justify-center items-center bg-purple-300 rounded-2xl bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-20 p-9
+}
+
+.small-card {
+    @apply h-auto w-96 flex justify-center items-center bg-purple-300 rounded-2xl bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-20 p-9 space-x-4
+}
+
+.image-small {
+    @apply h-20 w-20 rounded-full border-8 border-purple-300 opacity-75 mb-4
+}
+
+.savedcards {
+    @apply space-y-4
 }
 
 .image {
@@ -19,7 +35,7 @@ button {
 }
 
 p {
-    @apply bg-emerald-300 m-4 p-3 border rounded-3xl bg-opacity-50 shadow-emerald-500 shadow-lg text-yellow-800 text-center
+    @apply bg-fuchsia-300 m-4 p-3 border rounded-3xl bg-opacity-50 shadow-fuchsia-500 shadow-lg text-yellow-800 text-center
 }
 
 /* https://www.realtimecolors.com/?colors=0d0717-f4f1fb-6539c8-de8b89-d7b56e&fonts=Inter-Inter */

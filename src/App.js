@@ -1,63 +1,53 @@
 import { useState } from "react";
-
-/* const cardData = [
-  {
-    id: 1,
-    image: "./pic.jpg",
-    quotes: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus
-        commodi libero est fuga aperiam voluptate quos quibusdam laboriosam non
-        culpa quasi a, quis eligendi nemo mollitia rerum, similique consectetur
-        nulla.`,
-  },
-  {
-    id: 1,
-    image: "./pic.jpg",
-    quotes: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus
-        commodi libero est fuga aperiam voluptate quos quibusdam laboriosam non
-        culpa quasi a, quis eligendi nemo mollitia rerum, similique consectetur
-        nulla.`,
-  },
-  {
-    id: 1,
-    image: "./pic.jpg",
-    quotes: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus
-        commodi libero est fuga aperiam voluptate quos quibusdam laboriosam non
-        culpa quasi a, quis eligendi nemo mollitia rerum, similique consectetur
-        nulla.`,
-  },
-]; */
 export default function App() {
+  const [savedCardData, setSavedCardData] = useState([]);
+
   return (
-    <div>
-      <Card />
-      {/* <Card /> */}
+    <div className="app">
+      <Card
+        savedCardData={savedCardData}
+        onSetSavedCardData={setSavedCardData}
+      />
+      <SavedCard savedCardData={savedCardData} />
     </div>
   );
 }
 
-function Card() {
+function Card({ savedCardData, onSetSavedCardData }) {
   const [randomId, setRandomId] = useState("CLICK MEEH!!");
   const [advice, setAdvice] = useState(
     "Welcom Fellas!!!  😒 i dun hab any advoic now . But  yo  caan click on the purple shit  💩 cawlled button 😕 to generate som advice 💭 for yaa..!! hab  a noice day yoo 😈"
   );
+  const avatar = `https://i.pravatar.cc/500?u=${randomId}`;
   async function getAdvice() {
     const res = await fetch("https://api.adviceslip.com/advice");
     const data = await res.json();
 
     setAdvice(data.slip.advice);
   }
+  function handleAddData() {
+    if (savedCardData.map((data) => data.id).includes(randomId)) return;
+    onSetSavedCardData([
+      ...savedCardData,
+      {
+        id: randomId,
+        image: avatar,
+        advice: advice,
+      },
+    ]);
+  }
 
   return (
     <div className="card">
-      <Image randomId={randomId} />
+      <Image avatar={avatar} />
 
-      <Quotes advice={advice} onSetAdvice={setAdvice} />
+      <Advice advice={advice} onSetAdvice={setAdvice} />
       <RandomId
         randomId={randomId}
         onSetRandomId={setRandomId}
         onGetAdvice={getAdvice}
       />
-      {/* <h1> {cardData.map((data) => data.id)}</h1> */}
+      <Button onClick={handleAddData}>+</Button>
     </div>
   );
 }
@@ -76,18 +66,30 @@ function RandomId({ randomId, onSetRandomId, onGetAdvice }) {
     onSetRandomId(result.toUpperCase());
     onGetAdvice();
   }
-  return <button onClick={handleSetRandomId}>{randomId}</button>;
-}
-function Image({ randomId }) {
-  return (
-    <img
-      className="image"
-      src={`https://i.pravatar.cc/500?u=${randomId}`}
-      alt={randomId}
-    />
-  );
+  return <Button onClick={handleSetRandomId}>{randomId}</Button>;
 }
 
-function Quotes({ advice }) {
+function Button({ children, onClick }) {
+  return <button onClick={onClick}>{children}</button>;
+}
+function Image({ avatar }) {
+  return <img className="image-small" src={avatar} alt={""} />;
+}
+
+function Advice({ advice }) {
   return <p>{advice}</p>;
+}
+
+function SavedCard({ savedCardData }) {
+  return (
+    <div className="savedcards">
+      {savedCardData.map((cardData) => (
+        <div className="small-card" key={cardData.id}>
+          <Image avatar={cardData.image} />
+          <div className="thumb-id">{cardData.id}</div>
+          <p>{cardData.advice}</p>
+        </div>
+      ))}
+    </div>
+  );
 }
