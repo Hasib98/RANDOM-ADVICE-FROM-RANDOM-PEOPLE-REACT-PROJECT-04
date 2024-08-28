@@ -7,7 +7,7 @@ body {
 }
 
 .app {
-    @apply flex space-x-5
+    @apply flex justify-center items-center space-x-5
 }
 
 .card {
